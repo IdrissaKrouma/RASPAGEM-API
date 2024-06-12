@@ -25,5 +25,20 @@
     pip install os-sys
 '''
 
+# Deploiement
+'''
+    https://pereprogramming.com/articles/comment-deployer-fastapi-chez-alwaysdata/ #tuto pour alwaysdata
+    https://www.alwaysdata.com/fr/ # inscription
+    ssh -A krouma_raspagem@ssh-krouma.alwaysdata.net #acces a mon compte
+    git clone https://github.com/IdrissaKrouma/Raspagem-api.git
+    cd Raspagem-api/
+    pip install fastapi[all]
+    pip install schedule
+    uvicorn main:app --port 8100 --host '::' --proxy-headers --forwarded-allow-ips "::1"
+
+
+
+'''
+
 
      
