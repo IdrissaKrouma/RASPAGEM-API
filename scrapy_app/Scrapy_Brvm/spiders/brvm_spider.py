@@ -33,18 +33,4 @@ class BrvmSpider(scrapy.Spider):
             'top5': top5,
         }
 
-
-    def write_json(self, json_file_path) : 
-
-        # Écrire les données dans un fichier JSON
-        if not os.path.exists(json_file_path) : 
-            with open(json_file_path, 'w') as json_file:
-                json.dump(self.top5, json_file)
-            print("data saved!")
-            # print(f"{json_file_path} saved!")
-        
-        else : 
-            print("data already exist !")
-            # print(f"{json_file_path} already exists!")
-
         

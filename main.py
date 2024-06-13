@@ -48,13 +48,13 @@ def job():
         for ligne in lignes_script_shell:
             subprocess.run(ligne.strip(), shell=True, check=True)
         # subprocess.run(chemin_script_shell, shell=True, check=True)
-        print("Script shell exécuté avec succès.")
+        print("Script shell exécuté avec succès.")    
     except subprocess.CalledProcessError as e:
         print("Erreur lors de l'exécution du script shell:", e)
-
+  
     chemin_actuel = os.getcwd()
     nouveau_chemin = os.path.abspath(os.path.join(chemin_actuel, os.pardir))
-
+    os.chdir(nouveau_chemin)
     print(f"Changé de répertoire pour : {nouveau_chemin}")
 
 
@@ -72,14 +72,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["http://localhost:3000"],
-#     allow_credentials=True,
-#     allow_methods=["GET", "POST"],
-#     allow_headers=["*"],
-# )
-
 @app.get("/")
 def read_root():
     return {'hello world is me the inventor !'}
@@ -88,7 +80,7 @@ def read_root():
 async def read_item():
     try:
         job()
-        with open("../scrapy_app/top5_data.json", "r") as file:
+        with open("scrapy_app/top5_data.json", "r") as file:
             data = json.load(file)
         if not data:
             raise HTTPException(status_code=400, detail="JSON data is empty")
@@ -107,7 +99,7 @@ async def read_item():
 async def read_item(action_id:int):
     try:
         job()
-        with open("../scrapy_app/top5_data.json", "r") as file:
+        with open("scrapy_app/top5_data.json", "r") as file:
             data = json.load(file)
         if not data:
             raise HTTPException(status_code=400, detail="JSON data is empty")
